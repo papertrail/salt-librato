@@ -1,0 +1,37 @@
+##############################################################################
+# Logging                                                                    #
+#----------------------------------------------------------------------------#
+# Plugins which provide logging functions should be loaded first, so log     #
+# messages generated when loading or configuring other plugins can be        #
+# accessed.                                                                  #
+##############################################################################
+
+{% if not use_log_file and not use_syslog and not use_logstash %}
+### No logging configured
+{% endif %}
+
+{% if use_log_file %}
+LoadPlugin logfile
+
+<Plugin logfile>
+  LogLevel {{ log_file.log_level }}
+  File "{{ log_file.filename }}"
+  Timestamp {{ log_file.timestamp }}
+  PrintSeverity {{ log_file.print_severity }}
+</Plugin>
+{% endif %}
+{% if use_syslog %}
+LoadPlugin syslog
+
+<Plugin syslog>
+  LogLevel {{ syslog.log_level }}
+</Plugin>
+{% endif %}
+{% if use_logstash %}
+LoadPlugin log_logstash
+
+<Plugin log_logstash>
+  LogLevel {{ logstash.log_level }}
+  File "{{ logstash.filename }}"
+</Plugin>
+{% endif %}

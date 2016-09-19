@@ -1,0 +1,21 @@
+# This file is managed by salt.  Local changes will be overwritten.
+#
+#
+# Config file for collectd(1).
+# Please read collectd.conf(5) for a list of options.
+# http://collectd.org/
+#
+
+##############################################################################
+# Global                                                                     #
+#----------------------------------------------------------------------------#
+# Global settings for the daemon.                                            #
+##############################################################################
+
+Hostname    "{{ hostname }}"
+FQDNLookup   {{ fqdn_lookup }}
+Interval     {{ interval }}
+
+# Include logging config before plugins collectd logs plugin log entries
+Include "{{ plugin_config_path }}/logging.conf"
+Include "{{ plugin_config_path }}/*.conf"

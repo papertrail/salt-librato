@@ -6,7 +6,7 @@ librato:
   version: '5.5.0-librato51.251'
   config_base: '/opt/collectd/etc'
   plugin_config_path: '/opt/collectd/etc/collectd.conf.d'
-  hostname: {{ grains['host'] }}
+  hostname: {{ grains['fqdn'] }}
   fqdn_lookup: false
   interval: 60
 

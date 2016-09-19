@@ -3,7 +3,7 @@ librato:
   repo_url: 'https://packagecloud.io/librato/'
   config_base: '/opt/collectd/etc'
   plugin_config_path: '/opt/collectd/etc/collectd.conf.d'
-  hostname: {{ grains['host'] }}
+  hostname: {{ grains['fqdn'] }}
   fqdn_lookup: false
   interval: 60
 

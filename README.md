@@ -1,6 +1,6 @@
 # Librato Formula
 
-This formula configures the Librato Agent and plugins.
+This [formula](https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html) configures the Librato Agent and plugins.
 
 ## Supported Platforms
 
@@ -55,7 +55,7 @@ This will install the Agent and set up the default plugins (`cpu`, `df`, `disk`,
 
 ### Including a plugin
 
-To include a plugin, include the state in your SLS file:
+To include a plugin, include the state in your SLS state file:
 
 ```yaml
 include:
@@ -186,11 +186,11 @@ Each plugin has a set of attributes that you can override.
   
   - `librato.jvm.mbeans`
     
-    **Type**: list of hashes
+    **Type**: mapping
     
     Additional mbeans to collect. Defaults to empty.
     
-    Format of the list of hashes is:
+    Format of the mapping is:
     ```yaml
     mbeans: [
       {
@@ -264,11 +264,11 @@ Each plugin has a set of attributes that you can override.
 ### State: `mysql`
   - `librato.mysql.databases`
     
-    **Type**: list of hashes
+    **Type**: mapping
     
     Databases to collect metrics for. Defaults to empty.
     
-    Format of the list:
+    Format of the mapping is:
     ```yaml
     databases: [
       {
@@ -342,11 +342,11 @@ Each plugin has a set of attributes that you can override.
   
   - `librato.postgresql.databases` = []
     
-    **Type**: list of hashes
+    **Type**: mapping
     
     The databases to collect metrics for. Defaults to empty.
     
-    The format of the list is:
+    The format of the mapping is:
     ```yaml
     databases = [
       {

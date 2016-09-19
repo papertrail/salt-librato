@@ -55,7 +55,7 @@ This will install the Agent and set up the default plugins (`cpu`, `df`, `disk`,
 
 ### Including a plugin
 
-To include a plugin, include the state in your SLS state file:
+To include a plugin, include the state in your state file:
 
 ```yaml
 include:
@@ -63,7 +63,17 @@ include:
   - librato.jvm
 ```
 
-All of the plugins have sane defaults, but you can modify them via pillar. An example pillar file is included at `pillar.example`.
+and update any data in Pillar you need:
+
+```yaml
+librato:
+  apache:
+    path: '/server-status'
+    user: 'my-user'
+    password: 'supersecret'
+```
+
+All of the plugins have sane defaults, but you can modify them via pillar. An example pillar file with all of the available options is included at `pillar.example`.
 
 ### Using a third-party or upstream plugin that isn't available here
 

@@ -31,26 +31,26 @@ provisioner:
         - librato.varnish
 
 platforms:
-  #  - name: centos-6.7
-  #  - name: centos-7.2
-  #  - name: fedora-23
-  #  - name: amazonlinux-2016.03
-  #    driver:
-  #      name: ec2
-  #      image_id: ami-7172b611
-  #      aws_ssh_key_id: test-kitchen
-  #      region: us-west-2
-  #      availability_zone: a
-  #      require_chef_omnibus: true
-  #      instance_type: t2.large
-  #      associate_public_ip: true
-  #      interface: dns
-  #    transport:
-  #      username: ec2-user
-  #      ssh_key: ~/.ssh/id_rsa
-  #  - name: debian-7.10
-  #  - name: debian-8.4
-  #  - name: ubuntu-12.04
+  - name: centos-6.7
+  - name: centos-7.2
+  - name: fedora-23
+  - name: amazonlinux-2016.03
+    driver:
+      name: ec2
+      image_id: ami-7172b611
+      aws_ssh_key_id: test-kitchen
+      region: us-west-2
+      availability_zone: a
+      require_chef_omnibus: true
+      instance_type: t2.large
+      associate_public_ip: true
+      interface: dns
+    transport:
+      username: ec2-user
+      ssh_key: ~/.ssh/id_rsa
+  - name: debian-7.10
+  - name: debian-8.4
+  - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-15.04
   - name: ubuntu-15.10

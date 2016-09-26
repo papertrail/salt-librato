@@ -1,0 +1,12 @@
+LoadPlugin "apache"
+<Plugin "apache">
+   <Instance "apache80">
+       URL "{{ protocol }}://{{ host }}{{ path }}?auto"
+       {%- if apache_user is defined -%}
+       User "{{ apache_user }}"
+       {%- endif -%}
+       {%- if apache_password is defined -%}
+       Password "{{ apache_password }}"
+       {%- endif %}
+   </Instance>
+</Plugin>

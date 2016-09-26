@@ -1,0 +1,13 @@
+<Plugin "python">
+  ModulePath "/opt/collectd/share/collectd/"
+
+  Import "collectd-elasticsearch"
+
+  <Module "collectd-elasticsearch">
+    Url "{{ protocol }}://{{ host }}:{{ port }}"
+    {% if cluster_name is defined %}
+    Name "{{ cluser_name }}"
+    {% endif %}
+    Verbose {{ verbose }}
+  </Module>
+</Plugin>

@@ -1,0 +1,93 @@
+librato:
+  repo_base: 'librato-collectd'
+  repo_url: 'https://packagecloud.io/librato/'
+  config_base: '/opt/collectd/etc'
+  plugin_config_path: '/opt/collectd/etc/collectd.conf.d'
+  hostname: {{ grains['fqdn'] }}
+  fqdn_lookup: false
+  interval: 60
+
+  logging:
+    use_log_file: true
+    use_syslog: false
+    use_logstash: false
+    log_file:
+      log_level: 'info'
+      filename: '/opt/collectd/var/log/collectd.log'
+      timestamp: true
+      print_severity: false
+    syslog:
+      log_level: 'info'
+    logstash:
+      log_level: 'info'
+      filename: '/opt/collectd/var/log/collectd.json.log'
+
+  default_plugins: ['cpu', 'df', 'disk', 'swap', 'memory', 'load']
+
+  apache:
+    protocol: 'http'
+    host: 'localhost'
+    path: '/server-status'
+    user: nil
+    password: nil
+
+  nginx:
+    protocol: 'http'
+    host: 'localhost'
+    path: '/basic_status'
+
+  nginx_plus:
+    protocol: 'http'
+    host: 'localhost'
+    path: '/status'
+    verbose: false
+
+  memcached:
+    host: 'localhost'
+    port: '11211'
+
+  elasticsearch:
+    protocol: 'http'
+    host: 'localhost'
+    port: '9200'
+    cluster_name: nil
+    verbose: true
+
+  mongodb:
+    host: 'localhost'
+    port: '27017'
+    user: nil
+    password: nil
+    databases: []
+    name: 'mongodb'
+
+  zookeeper:
+    host: 'localhost'
+    port: '2181'
+
+  haproxy:
+    socket_file: '/run/haproxy/admin.sock'
+    proxies: ['server', 'frontend', 'backend']
+
+  redis:
+    host: 'localhost'
+    port: '6379'
+    timeout: '2000'
+
+  mysql:
+    databases: []
+
+  postgresql:
+    databases: []
+    socket_file: '/var/run/postgresql'
+    user: 'postgresql'
+
+  docker:
+    protocol: 'http'
+    host: 'localhost'
+    port: '2735'
+
+  jvm:
+    host: 'localhost'
+    service_url: 'service:jmx:rmi:///jndi/rmi://localhost:17264/jmxrmi'
+    mbeans: []

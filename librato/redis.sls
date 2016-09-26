@@ -1,0 +1,13 @@
+{% from "librato/map.jinja" import librato with context %}
+
+{{ librato.plugin_config_path }}/redis.conf:
+  file.managed:
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 0644
+    - source: salt://librato/files/redis.conf.jinja
+    - context:
+      host: {{ librato.redis.host }}
+      port: {{ librato.redis.port }}
+      timeout: {{ librato.redis.timeout }}

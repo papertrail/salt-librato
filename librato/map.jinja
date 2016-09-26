@@ -1,0 +1,53 @@
+{## Start with defaults from defaults.yaml ##}
+{% import_yaml 'librato/defaults.yaml' as default_settings %}
+
+{##
+Setup variable using grains['os'] based logic, only add key:values here
+that differ from whats in defaults.yaml
+##}
+{% set os_map = salt['grains.filter_by']({
+        'Debian': {
+            'version': '5.5.0-librato51.251',
+            'repo_base': 'librato-collectd',
+            'platform': 'debian',
+            'dist': grains['oscodename']
+        },
+        'Ubuntu': {
+            'version': '5.5.0-librato51.251',
+            'repo_base': 'librato-collectd',
+            'platform': 'ubuntu',
+            'dist': grains['oscodename']
+        },
+        'Amazon': {
+            'version': '5.5.0_librato51.251-0',
+            'repo_base': 'librato-amazonlinux-collectd',
+            'repo_release': '6',
+            'distro': 'el'
+        },
+        'Fedora': {
+            'version': '5.5.0_librato51.251-0',
+            'repo_base': 'librato-collectd',
+            'repo_release': '$releasever',
+            'distro': 'fedora'
+        },
+        'RedHat': {
+            'version': '5.5.0_librato51.251-0',
+            'repo_base': 'librato-collectd',
+            'repo_release': '$releasever',
+            'distro': 'el'
+        },
+        'CentOS': {
+            'version': '5.5.0_librato51.251-0',
+            'repo_base': 'librato-collectd',
+            'repo_release': '$releasever',
+            'distro': 'el'
+        }
+  }, grain="os", merge=salt['pillar.get']('librato:lookup'))
+%}
+
+{## Merge the flavor_map to the default settings ##}
+{% do default_settings.librato.update(os_map) %}
+
+{## Merge in librato:lookup pillar ##}
+{% set librato = salt['pillar.get']('librato', default=default_settings.librato, merge=True)
+%}

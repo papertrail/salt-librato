@@ -455,13 +455,13 @@ Each plugin has a set of attributes that you can override.
   
   **Type**: string
   
-  The hostname to use for the node. Defaults to the FQDN of the node (`fqdn`).
+  The hostname to use for the node. Defaults to nil in favor of using `FQDNLookup`.
 
 - `librato.fqdn_lookup`
   
   **Type**: true/false
   
-  Perform an FQDN lookup or not. Defaults to `false`.
+  Perform an FQDN lookup for the hostname. Defaults to `true`.
 
 - `librato.interval`
   

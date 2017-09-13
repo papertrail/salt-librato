@@ -21,7 +21,7 @@ collectd-core:
     - source: salt://librato/files/collectd.conf.jinja
     - context:
       plugin_config_path: {{ librato.plugin_config_path }}
-      {% if salt['pillar.get']('librato.hostname', False) %}
+      {% if salt['pillar.get']('librato:hostname', False) %}
       hostname: {{ librato.hostname }}
       {% endif %}
       fqdn_lookup: {{ librato.fqdn_lookup }}
